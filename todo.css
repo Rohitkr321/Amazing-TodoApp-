@@ -1,0 +1,39 @@
+
+
+body{
+  display: flex;
+}
+
+#left{
+  width: 50%;
+  height: 100%;
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#right{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.taskContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.taskContainer p{
+  margin-right: 10px;
+}
+
+.taskContainer button{
+  margin-right: 10px;
+  height: fit-content;
+}
