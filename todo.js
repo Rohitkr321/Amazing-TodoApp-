@@ -2,7 +2,7 @@
 let todos = [];
 let checkedItem = [];
 let checkedIndex = [];
-
+//Set the value of button and create.
 function createDiv() {
     //Create and append Left DIV
     let leftPanDiv = document.createElement("div");
@@ -23,6 +23,7 @@ function createDiv() {
     
     //Create textArea
     let input = document.createElement("textarea");
+    input.style.width="50%"
     input.setAttribute("id", "input")
     input.setAttribute("rows", "7")
     input.setAttribute("cols", "25")
@@ -66,7 +67,7 @@ function createDiv() {
 
 createDiv()
 
-
+//Create All Button and set the Value in getToDo function.
 function getToDo() {
     let mytodos = localStorage.getItem("todos");
     if (mytodos !== null) {
@@ -115,23 +116,20 @@ function getToDo() {
 }
 
 
-
+//CheckBox .
 function checkBox(event) {
     let element = event.path[1];
     let id = element.getAttribute("id")
     document.getElementById(`check-${id}`).innerHTML = "✔";
-    
     let p = element.childNodes[0].innerHTML
-
     if(checkedItem.indexOf(p)==-1){
         checkedItem.push(p);
     }
-
     localStorage.setItem("checked",JSON.stringify(checkedItem))
 
 }
 
-
+//Delete the Task if it's done. 
 function deleteBox(event) {
     let element = event.path[1];
     let id = element.getAttribute("id")
@@ -160,7 +158,7 @@ function deleteBox(event) {
     getToDo()
 }
 
-
+//After Complete the task ,renderCheckBox Complete Or Not.
 function renderCheckBox(){
     let checkedItemFromLocalStorage = localStorage.getItem("checked")
     if(checkedItemFromLocalStorage!==null){
@@ -181,10 +179,17 @@ function renderCheckBox(){
     }
 }
 
-
-function editTask(event){
-    let element = event.path[1];
-    let p = element.childNodes[0].innerHTML;
-    document.getElementById('input').value = p;
-    
+//Edit Function For Edit The Task.
+function editTask(event){ 
+let text;
+if (confirm(`If You sure for Edit the task then Write in textArea After press Ok`) == true) {
+  let element = event.path[1];
+  let p = element.childNodes[0].innerHTML;
+  document.getElementById('input').value = p;
+  deleteBox(event);
+} 
+else {
+  text = "You canceled!";
+  text.innerHTML="No";
+}
 }
